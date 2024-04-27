@@ -39,3 +39,15 @@ async def undeafen(ctx):
         await ctx.send("You have been undeafened.")
     else:
         await ctx.send("You are not in a voice channel.")
+
+ 
+@client.command()
+async def findvc(ctx, member: discord.Member):
+    try:
+        if member.voice is None or member.voice.channel is None:
+            await ctx.send(f"{member.display_name} is not in a voice channel.")
+        else:
+            channel_name = member.voice.channel.name
+            await ctx.send(f"{member.display_name} is in the voice channel: {channel_name}")
+    except Exception as e:
+        await ctx.send(f'An error occurred: {e}') 
